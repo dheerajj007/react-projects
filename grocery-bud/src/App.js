@@ -3,9 +3,17 @@ import List from "./List";
 import Alert from "./Alert";
 import { FaLess } from "react-icons/fa";
 
+const getLocalStorage = () => {
+  let list = localStorage.getItem("list");
+  if (list) {
+    return JSON.parse(localStorage.getItem("list"));
+  } else {
+    return [];
+  }
+};
 function App() {
   const [name, setName] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(0);
   const [alert, setAlert] = useState({
@@ -52,6 +60,9 @@ function App() {
   const showAlert = (show = false, msg = "", type = "") => {
     setAlert({ show, msg, type });
   };
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
   return (
     <section className="section-center">
       <form className="grocery-form">
