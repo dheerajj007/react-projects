@@ -1,9 +1,12 @@
 import React from "react";
 import Navbar from "./Navbar";
+import logo from "./logo.svg";
+import { links, social } from "./data";
+import { FaBars, FaTwitter } from "react-icons/fa";
 function App() {
   return (
     <>
-      <h2>navbar project setup</h2>
+      <Navbar />;
     </>
   );
 }
